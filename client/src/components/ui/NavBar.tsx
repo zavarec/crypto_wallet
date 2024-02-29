@@ -1,0 +1,33 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Box, Button, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
+import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
+import { logOutThunk } from '../../redux/thunkActions/authThunkActions';
+
+export default function NavBar(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const logoutHandler = (): void => {
+    void dispatch(logOutThunk());
+  };
+  return (
+    <Box bg={useColorModeValue('gray.200', 'gray.900')} rounded="lg" px={4}>
+      <Flex h={16} alignItems="center" justifyContent="space-between">
+        <HStack spacing={6}>
+          <Box>Hi,guest</Box>
+          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Home
+          </NavLink>
+          <NavLink to="/portfolio" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Portfolio
+          </NavLink>
+          <NavLink to="/marketdata" className={({ isActive }) => (isActive ? 'active' : '')}>
+            MarketData
+          </NavLink>
+        </HStack>
+        <HStack spacing={6}>
+          <Button onClick={logoutHandler}>Выйти</Button>
+        </HStack>
+      </Flex>
+    </Box>
+  );
+}
