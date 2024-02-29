@@ -11,7 +11,7 @@ export default function NavBar(): JSX.Element {
     void dispatch(logOutThunk());
   };
   return (
-    <Box bg={useColorModeValue('green.200', 'green.900')} rounded="lg" px={4}>
+    <Box bg={useColorModeValue('green.500', 'green.900')} rounded="lg" px={4}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HStack spacing={6}>
           <Box>Hi, {user.status === 'logged' ? user.name : 'guest'}</Box>
