@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
+
 export default function MainPage(): JSX.Element {
   useEffect(() => {
     // Создаем новый элемент скрипта
@@ -62,4 +63,4 @@ export default function MainPage(): JSX.Element {
       </Box>
     </Box>
   );
-}
+
