@@ -59,8 +59,9 @@ function SocialButton({
 export default function SmallWithLogoLeft(): JSX.Element {
   return (
     <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
+      bg={useColorModeValue('green.500', 'green.900')}
+      color={useColorModeValue('white.700', 'white.200')}
+      borderRadius="15px"
     >
       <Container
         as={Stack}
