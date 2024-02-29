@@ -5,8 +5,6 @@ const cookieParser = require('cookie-parser');
 
 const userRouter = require('./routes/userRouter');
 
-
-
 require('dotenv').config();
 
 const app = express();
@@ -19,9 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-
 app.use('/api/auth', userRouter);
-
 
 app.listen(PORT, () => {
   console.log(`Server is running oncc port ${PORT}`);
