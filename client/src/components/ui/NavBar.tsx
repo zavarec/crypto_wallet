@@ -23,6 +23,9 @@ export default function NavBar(): JSX.Element {
           <NavLink to="/marketdata" className={({ isActive }) => (isActive ? 'active' : '')}>
             MarketData
           </NavLink>
+          <NavLink to="/logged" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Logged
+          </NavLink>
         </HStack>
         <HStack spacing={6}>
           <Button onClick={logoutHandler}>Выйти</Button>

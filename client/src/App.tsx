@@ -4,6 +4,7 @@ import MainPage from './components/pages/MainPage';
 import Root from './components/Root';
 import PortfolioPage from './components/pages/PortfolioPage';
 import MarketDataPage from './components/pages/MarketDataPage';
+import LoggedPage from './components/pages/LoggedPage';
 
 function App(): JSX.Element {
   const router = createBrowserRouter([
@@ -13,7 +14,8 @@ function App(): JSX.Element {
       children: [
         {path: '/', element: <MainPage/>},
         {path: 'portfolio', element: <PortfolioPage/>},
-        {path: 'marketdata', element: <MarketDataPage/>}
+        {path: 'marketdata', element: <MarketDataPage/>},
+        {path: 'logged', element: <LoggedPage/>}
       ]
     },
   ]);
