@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Box, Button, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
-import { logOutThunk } from '../../redux/thunkActions/authThunkActions.ts';
+import { logOutThunk } from '../../redux/thunkActions/authThunkActions';
 
 export default function NavBar(): JSX.Element {
   const dispatch = useAppDispatch();
