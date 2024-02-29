@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
-import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { Box, Button, FormControl, FormLabel, Input, useToast } from '@chakra-ui/react';
+import { useAppDispatch } from '../../hooks/useReduxHook';
+import type { UserSignUpType } from '../../types/authType';
+import { signInThunk, signUpThunk } from '../../redux/thunkActions/authThunkActions';
 
 export default function MainPage(): JSX.Element {
   useEffect(() => {
@@ -17,26 +20,35 @@ export default function MainPage(): JSX.Element {
       document.getElementById('cr-widget-marquee')?.removeChild(script);
     };
   }, []); // Пустой массив зависимостей означает, что эффект будет выполняться один раз при монтировании компонента
+  const [formType, setFormType] = useState('login');
+  const toast = useToast();
+  const dispatch = useAppDispatch();
+
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as UserSignUpType;
+    console.log(data);
+    if (formType === 'signup') {
+      void dispatch(signUpThunk(data));
+      toast({ title: 'Регистрация успешна', status: 'success', duration: 5000, isClosable: true });
+    } else {
+      void dispatch(signInThunk(data));
+      toast({ title: 'Вход выполнен', status: 'success', duration: 5000, isClosable: true });
+    }
+  };
 
   return (
-    <Box
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        flex: 1,
-      }}
-    >
-      <Box>
-        <Box>
-          <Button type="submit" name="signup">
-            {' '}
-            signup
-          </Button>
-          <Button type="submit" name="login">
-            {' '}
-            login
-          </Button>
+    <Box>
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Box >
+          <Button type="submit" name='signup'> signup</Button>
+          <Button type="submit" name='login'> login</Button>
         </Box>
         <Box>
           <FormControl isRequired width="100%" alignItems="center">
@@ -54,7 +66,7 @@ export default function MainPage(): JSX.Element {
           width: '80%',
         }}
       >
-        <Box
+        <div
           id="cr-widget-marquee"
           data-coins="bitcoin,ethereum,tether,ripple,cardano"
           data-theme="light"
@@ -65,7 +77,7 @@ export default function MainPage(): JSX.Element {
           data-api-url="https://api.cryptorank.io/v0"
         >
           <a href="https://cryptorank.io">Coins by Cryptorank</a>
-        </Box>
+        </div>
       </Box>
     </Box>
   );
