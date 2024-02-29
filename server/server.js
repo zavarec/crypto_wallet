@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-
+const userRouter = require('./routes/userRouter');
 
 require('dotenv').config();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-
+app.use('/api/auth', userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running oncc port ${PORT}`);
