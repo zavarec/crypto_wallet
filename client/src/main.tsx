@@ -7,7 +7,7 @@ import '@fontsource/raleway/400.css';
 import '@fontsource/open-sans/700.css';
 import theme from './utils/theme';
 import { store } from './redux/store';
-import './index.css';
+
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>

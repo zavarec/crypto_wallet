@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
-
 export default function MainPage(): JSX.Element {
   useEffect(() => {
     // Создаем новый элемент скрипта
@@ -20,17 +19,24 @@ export default function MainPage(): JSX.Element {
   }, []); // Пустой массив зависимостей означает, что эффект будет выполняться один раз при монтировании компонента
 
   return (
-    <Box>
-      <Box
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Box >
-          <Button type="submit" name='signup'> signup</Button>
-          <Button type="submit" name='login'> login</Button>
+    <Box
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        flex: 1,
+      }}
+    >
+      <Box>
+        <Box>
+          <Button type="submit" name="signup">
+            {' '}
+            signup
+          </Button>
+          <Button type="submit" name="login">
+            {' '}
+            login
+          </Button>
         </Box>
         <Box>
           <FormControl isRequired width="100%" alignItems="center">
@@ -48,7 +54,7 @@ export default function MainPage(): JSX.Element {
           width: '80%',
         }}
       >
-        <div
+        <Box
           id="cr-widget-marquee"
           data-coins="bitcoin,ethereum,tether,ripple,cardano"
           data-theme="light"
@@ -59,8 +65,8 @@ export default function MainPage(): JSX.Element {
           data-api-url="https://api.cryptorank.io/v0"
         >
           <a href="https://cryptorank.io">Coins by Cryptorank</a>
-        </div>
+        </Box>
       </Box>
     </Box>
   );
-
+}
