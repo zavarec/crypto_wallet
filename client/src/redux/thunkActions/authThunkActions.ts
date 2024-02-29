@@ -8,7 +8,7 @@ export const checkTokenThunk = createAsyncThunk<AuthStateType>('auth/checkToken'
 );
 
 export const signInThunk = createAsyncThunk<AuthStateType, UserSignInType>(
-  'auth/login',
+  '/signin',
   async (data) => authService.signIn(data),
 );
 

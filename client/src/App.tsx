@@ -5,19 +5,17 @@ import Root from './components/Root';
 import PortfolioPage from './components/pages/PortfolioPage';
 import MarketDataPage from './components/pages/MarketDataPage';
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Root />,
       children: [
-        {path: '/', element: <MainPage/>},
-        {path: 'portfolio', element: <PortfolioPage/>},
-        {path: 'marketdata', element: <MarketDataPage/>}
-      ]
+        { path: '/', element: <MainPage /> },
+        { path: 'portfolio', element: <PortfolioPage /> },
+        { path: 'marketdata', element: <MarketDataPage /> },
+      ],
     },
   ]);
-  return <RouterProvider router={router}/>
+  return <RouterProvider router={router} />;
 }
-
-export default App;
