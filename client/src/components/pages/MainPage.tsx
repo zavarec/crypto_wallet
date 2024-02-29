@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 export default function MainPage(): JSX.Element {
   useEffect(() => {
@@ -19,26 +19,32 @@ export default function MainPage(): JSX.Element {
   }, []); // Пустой массив зависимостей означает, что эффект будет выполняться один раз при монтировании компонента
 
   return (
-    <Box
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Box>
-        <FormControl isRequired width="100%" alignItems="center">
-          <FormLabel>Name</FormLabel>
-          <Input placeholder="Name" />
-          <FormLabel>Email</FormLabel>
-          <Input placeholder="Email" />
-          <FormLabel>Password</FormLabel>
-          <Input placeholder="Password" />
-        </FormControl>
+    <Box>
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Box >
+          <Button type="submit" name='signup'> signup</Button>
+          <Button type="submit" name='login'> login</Button>
+        </Box>
+        <Box>
+          <FormControl isRequired width="100%" alignItems="center">
+            <FormLabel>Name</FormLabel>
+            <Input placeholder="Name" />
+            <FormLabel>Email</FormLabel>
+            <Input placeholder="Email" />
+            <FormLabel>Password</FormLabel>
+            <Input placeholder="Password" />
+          </FormControl>
+        </Box>
       </Box>
       <Box
         style={{
-        width: '80%',
+          width: '80%',
         }}
       >
         <div
