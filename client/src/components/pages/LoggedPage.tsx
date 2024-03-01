@@ -1,6 +1,6 @@
 import { Box, Button, SimpleGrid, useDisclosure } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import StockPart from '../ui/StockPart';
+import React from 'react';
+import StockWrapper from '../ui/StocksWrapper';
 import AddWalletModal from '../ui/AddWalletModal';
 
 export default function LoggedPage(): JSX.Element {
@@ -9,7 +9,7 @@ export default function LoggedPage(): JSX.Element {
   return (
     <Box mt={10}>
       <SimpleGrid columns={[1, 1, 1, 2]} spacing={2}>
-        <StockPart />
+        <StockWrapper />
         <Button onClick={onOpen}>Open Modal</Button>
         <AddWalletModal isOpen={isOpen} onClose={onClose} />
       </SimpleGrid>

@@ -4,7 +4,8 @@ export type StockType = {
   img: string;
 };
 
-export type StockState = {
+export type StocksUninitialStateType = {
   status: 'fetching' | 'idle' | 'error';
-  data: StockType[];
+  stocks: StockType[];
+  selected: StockType | null;
 };

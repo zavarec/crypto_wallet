@@ -1,16 +1,25 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { StockState } from '../../types/stockType';
+import type { StocksUninitialStateType } from '../../types/stockType';
 import { fetchStocksThunk } from '../thunkActions/stockThunkActions';
 
-const initialState: StockState = {
+const initialState: StocksUninitialStateType = {
+  stocks: [],
+  selected: null,
   status: 'fetching',
-  data: [],
 };
 
 const stockSlice = createSlice({
   name: 'stocks',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedStock: (state, action: PayloadAction<number>) => {
+      const stock = state.stocks.find((el) => el.id === action.payload);
+      if (stock) {
+        state.selected = stock;
+      }
+    },
+  },
 
   extraReducers: (builder) => {
     builder.addCase(fetchStocksThunk.pending, (state, action) => {
@@ -19,7 +28,7 @@ const stockSlice = createSlice({
 
     builder.addCase(fetchStocksThunk.fulfilled, (state, action) => {
       state.status = 'idle';
-      state.data = action.payload;
+      state.stocks = action.payload;
     });
     builder.addCase(fetchStocksThunk.rejected, (state, action) => {
       state.status = 'error';

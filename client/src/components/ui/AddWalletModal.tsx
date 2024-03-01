@@ -12,7 +12,8 @@ import {
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
 import { useAppDispatch } from '../../hooks/useReduxHook';
-import { ApiKeyType } from '../../types/apiKeyType';
+import type { ApiKeyType } from '../../types/apiKeyType';
+import { saveApiKeyThunk } from '../../redux/thunkActions/apiKeyThunkActions';
 
 type ModalProps = {
   isOpen: boolean;
@@ -26,11 +27,7 @@ export default function AddWalletModal({ isOpen, onClose }: ModalProps): JSX.Ele
     (e: React.FormEvent<HTMLFormElement>): void => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.currentTarget)) as ApiKeyType;
-      const name = formData.get('name') as string;
-      const apiKey = formData.get('api key') as string;
-      const apiSecret = formData.get('api secret') as string;
-      console.log(name, apiKey, apiSecret);
-      onClose();
+      void dispatch(saveApiKeyThunk(data));
     },
     [onClose],
   );
