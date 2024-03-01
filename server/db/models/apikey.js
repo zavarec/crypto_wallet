@@ -8,16 +8,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ User, Market }) {
-      this.belongsTo(User, { foreignKey: 'userId' });
-      this.belongsTo(Market, { foreignKey: 'marketId' });
+      this.belongsTo(User, { foreignKey: 'user_id' });
+      this.belongsTo(Market, { foreignKey: 'market_id' });
     }
   }
   ApiKey.init(
     {
-      apiKey: DataTypes.STRING,
-      apiSecret: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
-      marketId: DataTypes.INTEGER,
+      api_key: DataTypes.STRING,
+      api_secret: DataTypes.STRING,
+      user_id: DataTypes.INTEGER,
+      market_id: DataTypes.INTEGER,
     },
     {
       sequelize,
