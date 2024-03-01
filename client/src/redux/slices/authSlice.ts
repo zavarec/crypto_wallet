@@ -39,7 +39,7 @@ const authSlice = createSlice({
       const { accessToken, user } = action.payload;
       state.accessToken = accessToken;
       state.user.status = 'logged';
-      state.user = { ...user, ...state.user };
+      state.user = { ...state.user, ...user };
     });
 
     builder.addMatcher(

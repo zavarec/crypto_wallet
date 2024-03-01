@@ -6,20 +6,18 @@ import PortfolioPage from './components/pages/PortfolioPage';
 import MarketDataPage from './components/pages/MarketDataPage';
 import LoggedPage from './components/pages/LoggedPage';
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Root />,
       children: [
-        {path: '/', element: <MainPage/>},
-        {path: 'portfolio', element: <PortfolioPage/>},
-        {path: 'marketdata', element: <MarketDataPage/>},
-        {path: 'logged', element: <LoggedPage/>}
-      ]
+        { path: '/', element: <MainPage /> },
+        { path: 'portfolio', element: <PortfolioPage /> },
+        { path: 'marketdata', element: <MarketDataPage /> },
+        { path: 'logged', element: <LoggedPage /> },
+      ],
     },
   ]);
-  return <RouterProvider router={router}/>
+  return <RouterProvider router={router} />;
 }
-
-export default App;

@@ -5,15 +5,16 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { logOutThunk } from '../../redux/thunkActions/authThunkActions';
 
 export default function NavBar(): JSX.Element {
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   const logoutHandler = (): void => {
     void dispatch(logOutThunk());
   };
   return (
-    <Box bg={useColorModeValue('gray.200', 'gray.900')} rounded="lg" px={4}>
+    <Box bg={useColorModeValue('green.500', 'green.900')} rounded="lg" px={4} fontSize={20}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HStack spacing={6}>
-          <Box>Hi,guest</Box>
+          <Box>Hi, {user.status === 'logged' ? user.name : 'guest'}</Box>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
             Home
           </NavLink>
@@ -28,7 +29,7 @@ export default function NavBar(): JSX.Element {
           </NavLink>
         </HStack>
         <HStack spacing={6}>
-          <Button onClick={logoutHandler}>Выйти</Button>
+          {user.status === 'logged' && <Button onClick={logoutHandler}>Выйти</Button>}
         </HStack>
       </Flex>
     </Box>
