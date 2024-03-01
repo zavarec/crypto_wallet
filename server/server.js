@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+
+const userRouter = require('./routes/userRouter');
 const bybitRouter = require('./routes/bybitRouter');
 
 require('dotenv').config();
@@ -16,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+app.use('/api/auth', userRouter);
 app.use('/portfolio', bybitRouter);
 
 app.listen(PORT, () => {
