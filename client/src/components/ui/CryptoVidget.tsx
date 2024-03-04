@@ -18,7 +18,7 @@ export default function CryptoVidget(): JSX.Element {
     };
   }, []);
   return (
-    <Box>
+    <Box style={{paddingTop: '50px', paddingBottom: '20px'}}>
       <div
         id="cr-widget-marquee"
         data-coins="bitcoin,ethereum,tether,ripple,cardano"
