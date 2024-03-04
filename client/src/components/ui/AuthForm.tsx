@@ -45,7 +45,7 @@ export default function AuthForm(): JSX.Element {
             </Button>
           </Box>
           <Box style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
-            <Button type="submit" name="signup" style={{ width: '50%', backgroundColor: 'green' }}>
+            <Button type="submit" name="signup" style={{ width: '50%', backgroundColor: '#f6ad55' }}>
               {' '}
               Oк
             </Button>

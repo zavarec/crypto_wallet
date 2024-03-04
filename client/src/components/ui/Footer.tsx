@@ -59,7 +59,7 @@ function SocialButton({
 export default function SmallWithLogoLeft(): JSX.Element {
   return (
     <Box
-      bg={useColorModeValue('green.500', 'green.900')}
+      bg={useColorModeValue('orange.300', 'orange.900')}
       color={useColorModeValue('white.700', 'white.200')}
       borderRadius="15px"
     >

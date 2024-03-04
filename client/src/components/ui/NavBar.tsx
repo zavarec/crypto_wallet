@@ -11,18 +11,18 @@ export default function NavBar(): JSX.Element {
     void dispatch(logOutThunk());
   };
   return (
-    <Box bg={useColorModeValue('green.500', 'green.900')} rounded="lg" px={4} fontSize={20}>
+    <Box bg={useColorModeValue('orange.300', 'orange.900')} rounded="lg" px={4} fontSize={20}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HStack spacing={6}>
           <Box>Hi, {user.status === 'logged' ? user.name : 'guest'}</Box>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Home
+            Главная
           </NavLink>
           <NavLink to="/portfolio" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Portfolio
+            Портфолио
           </NavLink>
           <NavLink to="/marketdata" className={({ isActive }) => (isActive ? 'active' : '')}>
-            MarketData
+            Маркеты
           </NavLink>
         </HStack>
         <HStack spacing={6}>
