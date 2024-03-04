@@ -44,7 +44,7 @@ export default function AddWalletModal({ isOpen, onClose }: ModalProps): JSX.Ele
               <Input name="name" placeholder="Name" />
               <Input name="api key" placeholder="API Key" />
               <Input name="api secret" placeholder="API Secret" />
-              <Button colorScheme="blue" type="submit">
+              <Button colorScheme="black" variant="outline" type="submit">
                 Connect
               </Button>
             </Stack>
