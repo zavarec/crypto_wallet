@@ -16,10 +16,6 @@ module.exports = {
           name: 'Coinbase',
           img: 'https://static.coinstats.app/portfolio_images/coinbase_dark.png',
         },
-        {
-          name: 'Other',
-          img: 'https://coinstats.app/_next/static/images/connect-…er-portfolio-b28d2ed65a4aca0d27acea0dbc5d0a66.svg',
-        },
       ],
       {},
     );
