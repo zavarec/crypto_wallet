@@ -18,7 +18,7 @@ module.exports = {
     // Создание рынка ByBit
     await queryInterface.bulkInsert('Markets', [{
       name: 'ByBit',
-      img: 'путь_к_изображению_логотипа_ByBit', // Замените на путь к изображению логотипа ByBit
+      img: 'https://www.svgrepo.com/show/331331/bybit.svg', // Замените на путь к изображению логотипа ByBit
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
