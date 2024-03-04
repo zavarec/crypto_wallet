@@ -11,7 +11,7 @@ export default function LogoName(): JSX.Element {
         paddingTop: '50px'
       }}
     >
-      Manage your crypto wallets from one place
+      Manage your crypto portfolio from one place
     </div>
   );
 }
