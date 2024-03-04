@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainPage from './components/pages/MainPage';
 import Root from './components/Root';
 import PortfolioPage from './components/pages/PortfolioPage';
 import MarketDataPage from './components/pages/MarketDataPage';
+import LoggedPage from './components/pages/LoggedPage';
+import PrivateRouter from './components/HOCs/PrivateRouter';
+import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
+import { checkTokenThunk } from './redux/thunkActions/authThunkActions';
 
 export default function App(): JSX.Element {
+  // const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+
+  // useEffect(() => {
+  //   void dispatch(checkTokenThunk());
+  // }, []);
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -14,6 +25,10 @@ export default function App(): JSX.Element {
         { path: '/', element: <MainPage /> },
         { path: 'portfolio', element: <PortfolioPage /> },
         { path: 'marketdata', element: <MarketDataPage /> },
+        {
+          element: <PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />,
+          children: [{ path: 'logged', element: <LoggedPage /> }],
+        },
       ],
     },
   ]);
