@@ -8,9 +8,19 @@ export default function LoggedPage(): JSX.Element {
 
   return (
     <Box mt={10}>
-      <SimpleGrid columns={[1, 1, 1, 2]} spacing={2}>
+      <SimpleGrid
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}
+        columns={[1, 1, 1, 2]}
+        spacing={2}
+      >
         <StockWrapper />
-        <Button onClick={onOpen}>Open Modal</Button>
+        <Button style={{ alignContent: 'center', width: '200px' }} onClick={onOpen}>
+          Open Modal
+        </Button>
         <AddWalletModal isOpen={isOpen} onClose={onClose} />
       </SimpleGrid>
     </Box>

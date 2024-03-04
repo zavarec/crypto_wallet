@@ -12,6 +12,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import type { StockType } from '../../types/stockType';
 
 type StockItemProps = {
@@ -19,6 +20,15 @@ type StockItemProps = {
 };
 
 export default function StudentItem({ stock }: StockItemProps): JSX.Element {
+  // const cardStyle = {
+  //   bgColor: '#dbe7fe',
+  //   bgGradient: [
+  //     'webkit-radial-gradient(ellipse farthest-corner at center center, #dbe7fe 0%, #383b59 100%)',
+  //     'moz-radial-gradient(ellipse farthest-corner at center center, #dbe7fe 0%, #383b59 100%)',
+  //     'radial-gradient(ellipse farthest-corner at center center, #dbe7fe 0%, #383b59 100%)',
+  //   ],
+  // };
+
   return (
     <Box
       display="flex"
@@ -27,22 +37,29 @@ export default function StudentItem({ stock }: StockItemProps): JSX.Element {
       rounded="md"
       alignItems="center"
       transition="all .3s ease"
+      width="min-content"
+      padding="3px"
       _hover={{
         backgroundColor: useColorModeValue('gray.100', 'gray.600'),
       }}
     >
-      <Card align="center">
-        <Image
-          objectFit="cover"
-          maxW={{ base: '100%', sm: '200px' }}
-          src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-          alt="Caffe Latte"
-        />
+      <Card
+        align="center"
+        bgColor="#1a1e25"
+        bgGradient={[
+          'webkit-radial-gradient(ellipse farthest-corner at center center, #1a1e25 0%, #111326 100%)',
+          'moz-radial-gradient(ellipse farthest-corner at center center, #1a1e25 0%, #111326 100%)',
+          'radial-gradient(ellipse farthest-corner at center center, #1a1e25 0%,#111326 100%)',
+        ]}
+      >
+        <Image paddingTop="30px" objectFit="cover" width="72px" src={stock.img} alt="stock" />
         <CardBody>
-          <Text>View a summary of all your customers over the last month.</Text>
+          <Text style={{ color: 'white', paddingTop: '20px' }}>{stock.name}</Text>
         </CardBody>
         <CardFooter>
-          <Button colorScheme="blue">View here</Button>
+          <Button rightIcon={<ArrowForwardIcon />} colorScheme="white">
+            View here
+          </Button>
         </CardFooter>
       </Card>
     </Box>
