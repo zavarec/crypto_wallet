@@ -18,7 +18,7 @@ export default function LoggedPage(): JSX.Element {
         spacing={2}
       >
         <StockWrapper />
-        <Button style={{ alignContent: 'center', width: '200px' }} onClick={onOpen}>
+        <Button style={{ marginTop: '30px', marginLeft: '500px', width: '200px' }} onClick={onOpen}>
           Open Modal
         </Button>
         <AddWalletModal isOpen={isOpen} onClose={onClose} />
