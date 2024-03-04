@@ -26,7 +26,7 @@ export default function CoinsList(): JSX.Element {
     setVisibleCount((prevCount) => prevCount + 15); // Увеличиваем количество отображаемых монет на 15
   };
   return (
-    <>
+    <Box position="sticky" top={0} zIndex={1}>
       <Box
         mt="20%"
         borderRadius="xl"
@@ -63,6 +63,6 @@ export default function CoinsList(): JSX.Element {
       <Box display="flex" justifyContent="center" mt={4} mb="4%">
         <Button onClick={loadMoreCoins}>Загрузить еще</Button>
       </Box>
-    </>
+    </Box>
   );
 }

@@ -14,6 +14,7 @@ export default function AuthForm(): JSX.Element {
 
   const inputStyle = {
     bgColor: '#1a202c',
+    color: 'white',
     bgGradient: [
       'webkit-linear-gradient(to top, #dbe7fe 0%, #1a202c 20%)',
       'moz-linear-gradient(to top, #dbe7fe 0%, #1a202c 20%)',
@@ -28,11 +29,13 @@ export default function AuthForm(): JSX.Element {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      paddingTop='50px'
+      paddingTop="50px"
       onSubmit={submitHandler}
     >
       <Stack spacing={4} w="35%">
-        {formType && <Input placeholder="Name" type="name" name="name" style={inputStyle} />}
+        {formType && (
+          <Input placeholder="Name" type="name" name="name" style={inputStyle} />
+        )}
 
         <Input placeholder="Email" type="email" name="email" style={inputStyle} />
 
