@@ -5,12 +5,13 @@ export default function LogoName(): JSX.Element {
     <div
       style={{
         fontSize: '60px',
-        color: 'gold',
+        color: 'white',
         textAlign: 'center',
-        textShadow: '1px 1px 2px red, 0 0 1em green, 0 0 0.2em green',
+        textShadow: '1px 1px 2px white, 0 0 1em white, 0 0 0.2em white',
+        paddingTop: '50px'
       }}
     >
-      Crypto Wallet
+      Manage your crypto wallets from one place
     </div>
   );
 }
