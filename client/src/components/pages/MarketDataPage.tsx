@@ -1,5 +1,7 @@
 import React from 'react';
+import CoinsList from '../ui/CoinsList';
+
 
 export default function MarketDataPage(): JSX.Element {
-  return <div>MarketDataPage</div>;
+  return <CoinsList />;
 }
