@@ -18,9 +18,11 @@ export default function NavBar(): JSX.Element {
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
             Home
           </NavLink>
-          <NavLink to="/portfolio" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Portfolio
-          </NavLink>
+          {user.status === 'logged' && (
+            <NavLink to="/portfolio" className={({ isActive }) => (isActive ? 'active' : '')}>
+              Portfolio
+            </NavLink>
+          )}
           <NavLink to="/marketdata" className={({ isActive }) => (isActive ? 'active' : '')}>
             MarketData
           </NavLink>
