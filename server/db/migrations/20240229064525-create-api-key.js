@@ -8,35 +8,41 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      apiKey: {
+      api_key: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      apiSecret: {
+      api_secret: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      userId: {
+      user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
-      marketId: {
+      market_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Markets',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: new Date(),
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: new Date(),
+        defaultValue: Sequelize.fn('now'),
       },
     });
   },
