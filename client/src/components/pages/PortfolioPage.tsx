@@ -1,11 +1,23 @@
-import React from 'react';
-import { Button, Box } from '@chakra-ui/react';
+import React, { useEffect } from 'react';
+import { Button, Box, Card } from '@chakra-ui/react';
+import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
+import { fetchAllApisThunk } from '../../redux/thunkActions/apiKeyThunkActions';
+import PortfolioItom from '../ui/PortfolioItom';
+import type { ApiKeyType } from '../../types/apiKeyType';
 
 export default function PortfolioPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const apis = useAppSelector((state) => state.stock.apis) as ApiKeyType[];
+  useEffect(() => {
+    void dispatch(fetchAllApisThunk());
+  }, [dispatch]);
+
   return (
     <Box display="flex" height="100%">
       <Box width="25%" display="flex" justifyContent="space-around" height="35px" flexWrap="wrap">
-        <Box pt="5px" color="white">My Portfolio</Box>
+        <Box pt="5px" color="white">
+          My Portfolio
+        </Box>
         <Box>
           <svg
             style={{ marginLeft: '50px' }}
@@ -37,6 +49,8 @@ export default function PortfolioPage(): JSX.Element {
           <Button>Create portfolio</Button>
         </Box>
       </Box>
+        <Box>{apis?.map((api) => <PortfolioItom key={api.id} api={api} />)}</Box>
+
       <Box width="75%">
         <Box display="flex" />
       </Box>

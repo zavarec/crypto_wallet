@@ -27,6 +27,10 @@ class ApiKeyService {
   public updateApi(api: ApiKeyType): Promise<ApiKeyType> {
     return this.api.put<ApiKeyType>(`/apikeys/${api.id}`, api).then((res) => res.data);
   }
+
+  public fetchApis(): Promise<ApiKeyType[]> {
+    return this.api.get<ApiKeyType[]>('/apikeys/all').then((res) => res.data);
+  }
 }
 
 export default new ApiKeyService(axiosInstance);
