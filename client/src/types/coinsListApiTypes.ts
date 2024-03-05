@@ -29,5 +29,6 @@ export type CoinsApiResponseType = {
       total24hVolume: string;
     };
     coins: CoinType[];
+    favorites: CoinType[];
   };
 };

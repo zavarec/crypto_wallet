@@ -1,13 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addToFavoritesThunkAction, getCoinsThunkAction } from '../thunkActions/marketThunkActions';
-import type { CoinsApiResponseType } from '../../types/coinsListApiTypes';
+import {
+  addToFavoritesThunkAction,
+  getCoinsThunkAction,
+} from '../thunkActions/marketThunkActions';
+import type { CoinType, CoinsApiResponseType } from '../../types/coinsListApiTypes';
 
 const initialState: {
   data: CoinsApiResponseType | null;
   status: 'succeeded' | 'loading' | 'failed';
+  favorites: CoinType[];
 } = {
   data: null,
   status: 'loading',
+  favorites: [],
 };
 
 const coinsSlice = createSlice({
@@ -29,7 +34,7 @@ const coinsSlice = createSlice({
       })
       .addCase(addToFavoritesThunkAction.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = [...state.data, action.payload];
+        state.favorites = action.payload;
       });
   },
 });
