@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import CryptoVidget from '../ui/CryptoVidget';
 import MarketVidget from '../ui/MarketVidget';
 import AuthForm from '../ui/AuthForm';

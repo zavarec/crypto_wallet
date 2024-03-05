@@ -18,3 +18,15 @@ export const getCoins = async (): Promise<CoinsApiResponseType> => {
   // console.log(response.data);
   return response.data
 };
+
+export const addToFavorites = async (coinId: string): Promise<void> => {
+  const options = {
+    withCredentials: false,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': apiKey,
+    },
+  };
+
+  await axiosInstance.post(`${url}/user/favorites`, { coinId }, options);
+}
