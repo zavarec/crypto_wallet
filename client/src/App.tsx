@@ -10,12 +10,12 @@ import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
 import { checkTokenThunk } from './redux/thunkActions/authThunkActions';
 
 export default function App(): JSX.Element {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
 
-  // useEffect(() => {
-  //   void dispatch(checkTokenThunk());
-  // }, []);
+  useEffect(() => {
+    void dispatch(checkTokenThunk());
+  }, []);
 
   const router = createBrowserRouter([
     {

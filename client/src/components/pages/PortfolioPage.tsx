@@ -1,12 +1,11 @@
 import React from 'react';
 import { Button, Box } from '@chakra-ui/react';
 
-
 export default function PortfolioPage(): JSX.Element {
   return (
     <Box display="flex" height="100%">
       <Box width="25%" display="flex" justifyContent="space-around" height="35px" flexWrap="wrap">
-        <Box pt="5px">My Portfolio</Box>
+        <Box pt="5px" color="white">My Portfolio</Box>
         <Box>
           <svg
             style={{ marginLeft: '50px' }}
@@ -34,7 +33,9 @@ export default function PortfolioPage(): JSX.Element {
             alt="banner"
           />
         </Box>
-        <Button mt="15px">Create portfolio</Button>
+        <Box>
+          <Button>Create portfolio</Button>
+        </Box>
       </Box>
       <Box width="75%">
         <Box display="flex" />
