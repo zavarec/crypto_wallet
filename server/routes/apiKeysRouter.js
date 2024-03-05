@@ -24,7 +24,7 @@ const apiKeysRouter = express.Router();
 
 apiKeysRouter.route('/').post(async (req, res) => {
   const { name, api_key, api_secret, market_id, user_id } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   if (!name || !api_key || !api_secret || !user_id || !market_id) {
     res.status(401).json({ message: 'wrong api data' });
     return;
@@ -44,6 +44,11 @@ apiKeysRouter.route('/').post(async (req, res) => {
     console.log(err);
     res.sendStatus(500);
   }
+});
+
+apiKeysRouter.route('/all').get(async (req, res) => {
+  const apis = await ApiKey.findAll();
+  res.json(apis);
 });
 
 module.exports = apiKeysRouter;

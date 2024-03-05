@@ -4,6 +4,7 @@ import type { StocksUninitialStateType } from '../../types/stockType';
 import { fetchStocksThunk } from '../thunkActions/stockThunkActions';
 import type { ApiKeyType } from '../../types/apiKeyType';
 import {
+  fetchAllApisThunk,
   fetchApisThunk,
   saveApiKeyThunk,
   updateApiThunk,
@@ -67,6 +68,9 @@ const stockSlice = createSlice({
         el.id === action.payload.id ? { ...el, name: action.payload.name } : el,
       );
       state.editApi = null;
+    });
+    builder.addCase(fetchAllApisThunk.fulfilled, (state, action) => {
+      state.apis = action.payload;
     });
   },
 });

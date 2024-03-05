@@ -3,9 +3,11 @@ import { Box, Button, Input, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/reac
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import CoinCard from '../ui/MarketData/CoinCard';
 import { getCoinsThunkAction } from '../../redux/thunkActions/marketThunkActions';
+import type { CoinType, CoinsApiResponseType } from '../../types/coinsListApiTypes';
 
 export default function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.coins.data);
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(10);
 
@@ -13,18 +15,17 @@ export default function FavoritesPage(): JSX.Element {
     void dispatch(getCoinsThunkAction());
   }, [dispatch]);
 
-  const data = useAppSelector((state) => state.coins.data);
   const filteredCoins = data?.favorites
     .filter(
       (coin) =>
         coin.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         coin.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
     )
-    .slice(0, visibleCount);
+    .slice(0, visibleCount) as CoinType;
+
   const loadMoreCoins = (): void => {
     setVisibleCount((prevCount) => prevCount + 15); // Увеличиваем количество отображаемых монет на 15
   };
-
   return (
     <Box position="sticky" top={0} zIndex={1}>
       <Box
@@ -55,7 +56,9 @@ export default function FavoritesPage(): JSX.Element {
               <Th>Избранное</Th>
             </Tr>
           </Thead>
-          <Tbody color="yellow">{filteredCoins?.map((coin) => <CoinCard coin={coin} />)}</Tbody>
+          <Tbody color="yellow">
+            {filteredCoins?.map((coin) => <CoinCard key={coin.uuid} coin={coin} />)}
+          </Tbody>
         </Table>
       </Box>
       <Box display="flex" justifyContent="center" mt={4} mb="4%">

@@ -1,18 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  addToFavoritesThunkAction,
-  getCoinsThunkAction,
-} from '../thunkActions/marketThunkActions';
+import { addToFavoritesThunkAction, getCoinsThunkAction } from '../thunkActions/marketThunkActions';
 import type { CoinType, CoinsApiResponseType } from '../../types/coinsListApiTypes';
 
 const initialState: {
   data: CoinsApiResponseType | null;
   status: 'succeeded' | 'loading' | 'failed';
-  favorites: CoinType[];
+  favorites: CoinType | null;
 } = {
   data: null,
   status: 'loading',
-  favorites: [],
+  favorites: null,
 };
 
 const coinsSlice = createSlice({

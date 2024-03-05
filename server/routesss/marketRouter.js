@@ -49,11 +49,11 @@ marketRouter.get('/', verifyRefreshToken, async (req, res) => {
     coins: data.data.coins.filter(
       (coin) => !favorites.find((fav) => fav.ticket_name === coin.uuid),
     ),
-    favorites: data.data.coins.filter((coin) => {
-      favorites.find((fav) => fav.ticket_name === coin.uuid);
-    }),
+    favorites: data.data.coins.filter(
+      (coin) => favorites.find((fav) => fav.ticket_name === coin.uuid),
+    ),
   };
-console.log(result);
+  console.log('_+++++++_', result.favorites);
   res.json(result);
 });
 

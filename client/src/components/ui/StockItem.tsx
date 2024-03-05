@@ -19,7 +19,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { StockType } from '../../types/stockType';
 import UniversalModal from './UniversalModal';
 import { saveApiKeyThunk } from '../../redux/thunkActions/apiKeyThunkActions';
@@ -39,12 +39,14 @@ export default function StockItem({ stock, user }: StockItemProps): JSX.Element 
   const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<OverlayTwo />);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget)) as ApiKeyType;
     void dispatch(saveApiKeyThunk(data));
     onClose();
+    navigate('/portfolio');
   };
 
   const handleButtonClick = (): void => {
