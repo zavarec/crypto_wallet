@@ -11,23 +11,18 @@ import {
   Image,
   Text,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import type { StockType } from '../../types/stockType';
+import AddWalletModal from './AddWalletModal';
 
 type StockItemProps = {
   stock: StockType;
 };
 
 export default function StudentItem({ stock }: StockItemProps): JSX.Element {
-  // const cardStyle = {
-  //   bgColor: '#dbe7fe',
-  //   bgGradient: [
-  //     'webkit-radial-gradient(ellipse farthest-corner at center center, #dbe7fe 0%, #383b59 100%)',
-  //     'moz-radial-gradient(ellipse farthest-corner at center center, #dbe7fe 0%, #383b59 100%)',
-  //     'radial-gradient(ellipse farthest-corner at center center, #dbe7fe 0%, #383b59 100%)',
-  //   ],
-  // };
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box
@@ -57,9 +52,10 @@ export default function StudentItem({ stock }: StockItemProps): JSX.Element {
           <Text style={{ color: 'white', paddingTop: '20px' }}>{stock.name}</Text>
         </CardBody>
         <CardFooter>
-          <Button rightIcon={<ArrowForwardIcon />} colorScheme="white">
+          <Button rightIcon={<ArrowForwardIcon />} colorScheme="white" onClick={onOpen}>
             View here
           </Button>
+          <AddWalletModal isOpen={isOpen} onClose={onClose} />
         </CardFooter>
       </Card>
     </Box>

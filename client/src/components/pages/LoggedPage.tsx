@@ -4,7 +4,7 @@ import StockWrapper from '../ui/StocksWrapper';
 import AddWalletModal from '../ui/AddWalletModal';
 
 export default function LoggedPage(): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box mt={10}>
@@ -18,10 +18,10 @@ export default function LoggedPage(): JSX.Element {
         spacing={2}
       >
         <StockWrapper />
-        <Button style={{ marginTop: '30px', marginLeft: '500px', width: '200px' }} onClick={onOpen}>
+        {/* <Button style={{ marginTop: '30px', marginLeft: '500px', width: '200px' }} onClick={onOpen}>
           Open Modal
         </Button>
-        <AddWalletModal isOpen={isOpen} onClose={onClose} />
+        <AddWalletModal isOpen={isOpen} onClose={onClose} /> */}
       </SimpleGrid>
     </Box>
   );
