@@ -2,23 +2,25 @@ import React from 'react';
 
 import { Card, IconButton, Image, Td, Text, Tr } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
-import type { CoinType } from '../../types/coinsListApiTypes';
+import type { CoinType } from '../../../types/coinsListApiTypes';
+import { useAppDispatch } from '../../../hooks/useReduxHook';
+import { addToFavoritesThunkAction } from '../../../redux/thunkActions/marketThunkActions';
 
 type OneCoinCardPropsType = {
   coin: CoinType;
 };
 
-
 export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const onAddToFavorites = (id: string): void => {
+    void dispatch(addToFavoritesThunkAction(id));
+  };
+
   return (
     <Tr key={coin.uuid} bg="gray.900" _hover={{ bg: 'gray.700' }}>
       <Td>
-        <Image
-          src={coin.iconUrl}
-          alt={coin.name}
-          boxSize="30px" // Можете настроить размер изображения
-          objectFit="cover"
-        />
+        <Image src={coin.iconUrl} alt={coin.name} boxSize="30px" objectFit="cover" />
       </Td>
       <Td>{coin.name}</Td>
       <Td>{coin.symbol}</Td>

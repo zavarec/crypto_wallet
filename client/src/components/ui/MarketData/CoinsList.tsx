@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Input, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
 
-import { getCoinsThunkAction } from '../../redux/thunkActions/marketThunkActions';
-import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
+import { getCoinsThunkAction } from '../../../redux/thunkActions/marketThunkActions';
+import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxHook';
 import CoinCard from './CoinCard';
 
 export default function CoinsList(): JSX.Element {
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.coins.data?.data);
+  const data = useAppSelector((state) => state.coins.data);
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(10);
+  console.log(data);
 
   useEffect(() => {
     void dispatch(getCoinsThunkAction());
@@ -22,9 +23,11 @@ export default function CoinsList(): JSX.Element {
         coin.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
     )
     .slice(0, visibleCount);
-  const loadMoreCoins = () => {
+  const loadMoreCoins = (): void => {
     setVisibleCount((prevCount) => prevCount + 15); // Увеличиваем количество отображаемых монет на 15
   };
+  // console.log(filteredCoins);
+
   return (
     <Box position="sticky" top={0} zIndex={1}>
       <Box
