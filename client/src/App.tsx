@@ -8,6 +8,7 @@ import LoggedPage from './components/pages/LoggedPage';
 import PrivateRouter from './components/HOCs/PrivateRouter';
 import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
 import { checkTokenThunk } from './redux/thunkActions/authThunkActions';
+import FavoritesPage from './components/pages/FavoritesPage';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ export default function App(): JSX.Element {
         { path: '/', element: <MainPage /> },
         { path: 'portfolio', element: <PortfolioPage /> },
         { path: 'marketdata', element: <MarketDataPage /> },
+        { path: 'favorites', element: <FavoritesPage /> },
         {
           element: <PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />,
           children: [{ path: 'logged', element: <LoggedPage /> }],

@@ -4,8 +4,3 @@ export type ApiKeyType = {
   apiKey: string;
   apiSecret: string;
 };
-
-// export type StockState = {
-//   status: 'fetching' | 'idle' | 'error';
-//   data: StockType[];
-// };

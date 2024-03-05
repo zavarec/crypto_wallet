@@ -24,22 +24,22 @@ export default function useAuth(): {
     const data = Object.fromEntries(new FormData(e.currentTarget)) as UserSignUpType;
 
     if (!data.email || !data.password) {
-      toast({ title: 'Заполните все поля', status: 'error', duration: 5000, isClosable: true });
+      toast({ title: 'Fill in all the fields', status: 'error', duration: 5000, isClosable: true });
       return;
     }
 
     if (formType) {
       void dispatch(signUpThunk(data)).then((result) => {
-        if (result.error) {
+        if (result.meta.requestStatus === 'rejected') {
           toast({
-            title: 'Что-то пошло не так при регистрации',
+            title: 'Something went wrong during registration',
             status: 'error',
             duration: 5000,
             isClosable: true,
           });
         } else {
           toast({
-            title: 'Регистрация успешна',
+            title: 'Registration is successful',
             status: 'success',
             duration: 5000,
             isClosable: true,
@@ -49,20 +49,25 @@ export default function useAuth(): {
     } else {
       dispatch(signInThunk(data))
         .then((result) => {
-          if (result.error) {
+          if (result.meta.requestStatus === 'rejected') {
             toast({
-              title: 'Такого пользователя не существует',
+              title: 'There is no such user',
               status: 'error',
               duration: 5000,
               isClosable: true,
             });
           } else {
-            toast({ title: 'Вход выполнен', status: 'success', duration: 5000, isClosable: true });
+            toast({
+              title: 'The login is completed',
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+            });
           }
         })
         .catch((error) => {
           toast({
-            title: 'Произошла ошибка при выполнении операции',
+            title: 'An error occurred while performing the operation',
             status: 'error',
             duration: 5000,
             isClosable: true,

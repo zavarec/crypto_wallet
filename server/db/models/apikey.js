@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   ApiKey.init(
     {
+      name: DataTypes.STRING,
       api_key: DataTypes.STRING,
       api_secret: DataTypes.STRING,
       user_id: DataTypes.INTEGER,

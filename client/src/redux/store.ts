@@ -1,10 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
-
 import coinsReducer from './slices/coinsSlice';
-
 import stockReducer from './slices/stockSlice';
-
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +10,6 @@ export const store = configureStore({
     coins: coinsReducer,
 
     stock: stockReducer,
-
   },
 });
 

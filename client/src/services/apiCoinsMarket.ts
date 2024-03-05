@@ -1,32 +1,21 @@
-import axios from 'axios';
-import type { CoinsApiResponseType } from '../types/coinsListApiTypes';
+import type { CoinType, CoinsApiResponseType } from '../types/coinsListApiTypes';
 import axiosInstance from './apiInstance';
 
 const url = import.meta.env.VITE_URL_API_COINRANKING as string;
 const apiKey = import.meta.env.VITE_API_KEY as string;
 
 export const getCoins = async (): Promise<CoinsApiResponseType> => {
-  const options = {
-    withCredentials: false,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-access-token': apiKey,
-    },
-  };
-
-  const response = await axiosInstance.get<CoinsApiResponseType>(`${url}/coins`, options);
+  const response = await axiosInstance.get<CoinsApiResponseType>(`/marketdata`);
   // console.log(response.data);
-  return response.data
+  return response.data;
 };
 
-export const addToFavorites = async (coinId: string): Promise<void> => {
-  const options = {
-    withCredentials: false,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-access-token': apiKey,
-    },
-  };
+export const addToFavorites = async (coinId: CoinType['uuid']): Promise<CoinType['uuid']> => {
+  const reponse = await axiosInstance.post<CoinType['uuid']>(`/marketdata/${coinId}`);
+  return reponse.data;
+};
 
-  await axiosInstance.post(`${url}/user/favorites`, { coinId }, options);
-}
+export const getFavoriteCoins = async (): Promise<CoinType[]> => {
+  const response = await axiosInstance.get<CoinType[]>('/favorites');
+  return response.data;
+};
