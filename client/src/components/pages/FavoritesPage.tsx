@@ -55,7 +55,7 @@ export default function FavoritesPage(): JSX.Element {
               <Th>Избранное</Th>
             </Tr>
           </Thead>
-          <Tbody color="yellow">{filteredCoins?.map((coin) => <CoinCard />)}</Tbody>
+          <Tbody color="yellow">{filteredCoins?.map((coin) => <CoinCard coin={coin} />)}</Tbody>
         </Table>
       </Box>
       <Box display="flex" justifyContent="center" mt={4} mb="4%">
