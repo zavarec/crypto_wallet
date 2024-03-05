@@ -23,6 +23,16 @@ export default function AuthForm(): JSX.Element {
     border: '2px solid white',
   };
 
+  const buttonStyle = {
+    bgColor: '#1a202c',
+    bgGradient: [
+      'webkit-linear-gradient(to top, #dbe7fe 0%, #1a202c 20%)',
+      'moz-linear-gradient(to top, #dbe7fe 0%, #1a202c 20%)',
+      'linear-gradient(to top, #dbe7fe 0%, #1a202c 20%)',
+    ],
+    border: '2px solid white',
+  };
+
   return (
     <Box
       as="form"
@@ -49,7 +59,7 @@ export default function AuthForm(): JSX.Element {
             </Button>
           </Box>
           <Box style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
-            <Button type="submit" name="signup" style={{ ...inputStyle, width: '100%' }}>
+            <Button type="submit" name="signup" style={{ ...buttonStyle, width: '100%' }}>
               {' '}
               Ok
             </Button>
