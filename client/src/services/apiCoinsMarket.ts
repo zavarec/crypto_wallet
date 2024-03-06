@@ -19,3 +19,8 @@ export const getFavoriteCoins = async (): Promise<CoinType[]> => {
   const response = await axiosInstance.get<CoinType[]>('/favorites');
   return response.data;
 };
+
+// export const getOneCoin = async (coinId: CoinType['uuid']): Promise<CoinType['uuid']> => {
+//   const reponse = await axiosInstance.get<CoinType['uuid']>(`/marketdata/${coinId}`);
+//   return reponse.data;
+// }

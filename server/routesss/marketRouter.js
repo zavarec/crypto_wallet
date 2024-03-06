@@ -57,4 +57,10 @@ marketRouter.get('/', verifyRefreshToken, async (req, res) => {
   res.json(result);
 });
 
+marketRouter.get('/:id', (req, res) => {
+  const { id } = req.params;
+  // Далее обработка запроса, например, загрузка данных по указанному идентификатору
+  res.send(`Requesting data for market with ID: ${id}`);
+});
+
 module.exports = marketRouter;

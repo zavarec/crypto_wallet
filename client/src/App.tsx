@@ -9,6 +9,7 @@ import PrivateRouter from './components/HOCs/PrivateRouter';
 import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
 import { checkTokenThunk } from './redux/thunkActions/authThunkActions';
 import FavoritesPage from './components/pages/FavoritesPage';
+import CoinPage from './components/pages/CoinPage';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -27,6 +28,7 @@ export default function App(): JSX.Element {
         { path: 'portfolio', element: <PortfolioPage /> },
         { path: 'marketdata', element: <MarketDataPage /> },
         { path: 'favorites', element: <FavoritesPage /> },
+        { path: 'marketdata/:id', element: <CoinPage /> },
         {
           element: <PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />,
           children: [{ path: 'logged', element: <LoggedPage /> }],
