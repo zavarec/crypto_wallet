@@ -11,7 +11,6 @@ export default function CoinsList(): JSX.Element {
   const data = useAppSelector((state) => state.coins.data);
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(10);
-  console.log(data);
 
   useEffect(() => {
     void dispatch(getCoinsThunkAction());
@@ -23,7 +22,7 @@ export default function CoinsList(): JSX.Element {
         coin.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         coin.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
     )
-    .slice(0, visibleCount) as CoinType;
+    .slice(0, visibleCount) as CoinType[];
   const loadMoreCoins = (): void => {
     setVisibleCount((prevCount) => prevCount + 15); // Увеличиваем количество отображаемых монет на 15
   };
@@ -39,6 +38,7 @@ export default function CoinsList(): JSX.Element {
         maxW="full"
         margin="auto"
         p={4}
+        minH="700px"
       >
         <Input
           color="yellow"

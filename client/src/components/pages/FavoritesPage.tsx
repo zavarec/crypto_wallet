@@ -3,7 +3,7 @@ import { Box, Button, Input, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/reac
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import CoinCard from '../ui/MarketData/CoinCard';
 import { getCoinsThunkAction } from '../../redux/thunkActions/marketThunkActions';
-import type { CoinType, CoinsApiResponseType } from '../../types/coinsListApiTypes';
+import type { CoinType } from '../../types/coinsListApiTypes';
 
 export default function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -15,13 +15,14 @@ export default function FavoritesPage(): JSX.Element {
     void dispatch(getCoinsThunkAction());
   }, [dispatch]);
 
+  console.log(data?.favorites);
   const filteredCoins = data?.favorites
     .filter(
       (coin) =>
         coin.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         coin.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
     )
-    .slice(0, visibleCount) as CoinType;
+    .slice(0, visibleCount) as CoinType[];
 
   const loadMoreCoins = (): void => {
     setVisibleCount((prevCount) => prevCount + 15); // Увеличиваем количество отображаемых монет на 15
@@ -36,6 +37,7 @@ export default function FavoritesPage(): JSX.Element {
         maxW="full"
         margin="auto"
         p={4}
+        minH="700px"
       >
         <Input
           color="yellow"
@@ -53,7 +55,7 @@ export default function FavoritesPage(): JSX.Element {
               <Th isNumeric>Цена</Th>
               <Th isNumeric>Рыночная капитализация</Th>
               <Th isNumeric>Объем (24ч)</Th>
-              <Th>Избранное</Th>
+              <Th>Избранные</Th>
             </Tr>
           </Thead>
           <Tbody color="yellow">
