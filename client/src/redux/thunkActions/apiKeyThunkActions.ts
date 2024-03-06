@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { ApiKeyType } from '../../types/apiKeyType';
 import ApiKeyService from '../../services/apiKeyService';
-import apiKeyService from '../../services/apiKeyService';
 
 export const fetchApisThunk = createAsyncThunk<ApiKeyType[], number>('apis/fetchApis', async (id) =>
   ApiKeyService.getApis(id),
@@ -22,5 +21,5 @@ export const updateApiThunk = createAsyncThunk<ApiKeyType, ApiKeyType>(
 );
 
 export const fetchAllApisThunk = createAsyncThunk<ApiKeyType[]>('apis/fetchAllApis', async () =>
-  apiKeyService.fetchApis(),
+  ApiKeyService.fetchApis(),
 );
