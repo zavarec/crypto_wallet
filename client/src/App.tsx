@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
 import { checkTokenThunk } from './redux/thunkActions/authThunkActions';
 import FavoritesPage from './components/pages/FavoritesPage';
 import ErrorPage from './components/pages/ErrorPage';
+import CoinPage from './components/pages/CoinPage';
+import { getCoinsThunkAction } from './redux/thunkActions/marketThunkActions';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,11 +25,21 @@ export default function App(): JSX.Element {
     {
       path: '/',
       element: <Root />,
+      // loader: () => dispatch(checkTokenThunk()).catch(),
       children: [
         { path: '/', element: <MainPage /> },
         { path: 'portfolio', element: <PortfolioPage /> },
-        { path: 'marketdata', element: <MarketDataPage /> },
+        {
+          path: 'marketdata',
+          element: <MarketDataPage />,
+          // loader: () => dispatch(getCoinsThunkAction()),
+        },
         { path: 'favorites', element: <FavoritesPage /> },
+        {
+          path: 'marketdata/:id',
+          element: <CoinPage />,
+          // loader: () => dispatch(getCoinsThunkAction()),
+        },
         {
           element: <PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />,
           children: [{ path: 'logged', element: <LoggedPage /> }],
