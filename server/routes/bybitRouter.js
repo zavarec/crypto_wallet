@@ -1,6 +1,6 @@
 const express = require('express');
 const { ApiKey } = require('../db/models');
-const { http_request } = require('../utils/exchangeConnection');
+const { httpRequest } = require('../utils/exchangeConnection');
 
 const bybitRouter = express.Router();
 
@@ -16,11 +16,11 @@ bybitRouter.get('/', async (req, res) => {
       return res.status(404).json({ message: 'API ключ не найден' });
     }
 
-    const { api_key, api_secret } = userApiKeys; // Деструктуризация для получения ключей
+    const { apiKey, apiSecret } = userApiKeys; // Деструктуризация для получения ключей
 
     const endpoint = '/v5/account/wallet-balance';
     const params = { accountType: 'UNIFIED' };
-    const response = await http_request(endpoint, 'GET', params, 'Wallet Balance', api_key, api_secret);
+    const response = await httpRequest(endpoint, 'GET', params, 'Wallet Balance', apiKey, apiSecret);
     res.json(response.data);
   } catch (error) {
     console.error(error.message);

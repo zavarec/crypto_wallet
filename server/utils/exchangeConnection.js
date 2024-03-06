@@ -11,7 +11,7 @@ function getSignature(parameters, secret) {
   return crypto.createHmac('sha256', secret).update(`${timestamp}${parameters.api_key}${recvWindow}${queryString}`).digest('hex');
 }
 
-async function http_request(endpoint, method, params, Info, apiKey, secret) {
+async function httpRequest(endpoint, method, params, Info, apiKey, secret) {
   const timestamp = Date.now().toString();
   const data = {
     ...params,
@@ -52,4 +52,4 @@ async function http_request(endpoint, method, params, Info, apiKey, secret) {
   return axios(config);
 }
 
-module.exports = { http_request };
+module.exports = { httpRequest };

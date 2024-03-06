@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { fetchAllApisThunk } from '../../redux/thunkActions/apiKeyThunkActions';
 import PortfolioItom from '../ui/PortfolioItom';
 import type { ApiKeyType } from '../../types/apiKeyType';
+import NumberComponent from '../ui/Balance';
 
 export default function PortfolioPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -47,6 +48,7 @@ export default function PortfolioPage(): JSX.Element {
         </Box>
         <Box>
           <Button>Create portfolio</Button>
+          <NumberComponent/>
         </Box>
       </Box>
         <Box>{apis?.map((api) => <PortfolioItom key={api.id} api={api} />)}</Box>

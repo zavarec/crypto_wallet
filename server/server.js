@@ -16,6 +16,9 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+// const extension = process.env.NODE_ENV === 'production' ? 'js' : 'jsx';
+// app.engine(extension, jsxRender);
+// app.set('view engine', extension);
 
 app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('dev'));
@@ -25,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.use('/api/auth', userRouter);
-app.use('/portfolio', bybitRouter);
+app.use('/balance', bybitRouter);
 app.use('/api/stocks', stockRouter);
 
 app.use('/api/tokens', tokensRouter);
