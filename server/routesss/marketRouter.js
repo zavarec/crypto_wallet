@@ -32,7 +32,7 @@ const getCoins = async () => {
   const options = {
     withCredentials: false,
     headers: {
-      'x-access-token': 'coinrankingbbebd95a3b3f78ba54057c7b78c54a6c30f60ea74b6a6f0e',
+      'x-access-token': 'coinrankingf2feec4806319864613f9ab90a808cafc0538eb1d42c5cb8',
     },
   };
   const response = await axios.get('https://api.coinranking.com/v2/coins', options);

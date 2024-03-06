@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, memo } from 'react';
 
-function CoinVidget(): JSX.Element {
+function CoinVidget({coin}): JSX.Element {
   const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
