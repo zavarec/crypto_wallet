@@ -9,6 +9,7 @@ import PrivateRouter from './components/HOCs/PrivateRouter';
 import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
 import { checkTokenThunk } from './redux/thunkActions/authThunkActions';
 import FavoritesPage from './components/pages/FavoritesPage';
+import ErrorPage from './components/pages/ErrorPage';
 import CoinPage from './components/pages/CoinPage';
 
 export default function App(): JSX.Element {
@@ -34,7 +35,10 @@ export default function App(): JSX.Element {
           children: [{ path: 'logged', element: <LoggedPage /> }],
         },
       ],
+      errorElement: <ErrorPage />,
     },
+    { path: '*', element: <ErrorPage /> },
+    {},
   ]);
   return <RouterProvider router={router} />;
 }

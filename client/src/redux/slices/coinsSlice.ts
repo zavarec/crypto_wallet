@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addToFavoritesThunkAction, getCoinsThunkAction } from '../thunkActions/marketThunkActions';
-import type { CoinType, CoinsApiResponseType } from '../../types/coinsListApiTypes';
+import {
+  addToFavoritesThunkAction,
+  deleteFavoriteCoinThunkAction,
+  getCoinsThunkAction,
+} from '../thunkActions/marketThunkActions';
+import type { CoinsStateType } from '../../types/coinsListApiTypes';
 
-const initialState: {
-  data: CoinsApiResponseType | null;
-  status: 'succeeded' | 'loading' | 'failed';
-  favorites: CoinType | null;
-} = {
+const initialState: CoinsStateType = {
   data: null,
   status: 'loading',
-  favorites: null,
 };
+
+// data: all coins, favorites: favorite coins
 
 const coinsSlice = createSlice({
   name: 'coins',
@@ -31,8 +32,21 @@ const coinsSlice = createSlice({
       })
       .addCase(addToFavoritesThunkAction.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.favorites = action.payload;
+        if (!state.data) return;
+
+        const targetCoin = state.data.coins.find(
+          (coin) => coin.uuid === action.payload.ticket_name,
+        );
+        if (targetCoin) {
+          state.data.favorites.push(targetCoin);
+        }
+        // state.data = state.data.favorites.filter((coin) => coin.uuid !== action.payload);
       });
+    // .addCase(deleteFavoriteCoinThunkAction.fulfilled, (state, action) => {
+    //   if (!state.favorites) return;
+    //   state.status = 'succeeded';
+    //   state.favorites = state.favorites.filter((coin) => coin.uuid !== action.payload);
+    // });
   },
 });
 
