@@ -10,7 +10,15 @@ marketRouter.post('/:id', verifyRefreshToken, async (req, res) => {
   const { id } = req.params;
   const userId = res.locals.user.id;
   const favorite = await Favorite.findOrCreate({ where: { ticket_name: id, user_id: userId } });
-  res.json(favorite);
+  console.log(favorite[0]);
+  res.json(favorite[0]);
+});
+
+marketRouter.delete('/:id', verifyRefreshToken, async (req, res) => {
+  const { id } = req.params;
+  const userId = res.locals.user.id;
+  await Favorite.destroy({ where: { ticket_name: id, user_id: userId } });
+  res.json({ message: 'Deleted' });
 });
 
 // marketRouter.delete('/:id', verifyRefreshToken, async (req, res) => {
@@ -49,11 +57,11 @@ marketRouter.get('/', verifyRefreshToken, async (req, res) => {
     coins: data.data.coins.filter(
       (coin) => !favorites.find((fav) => fav.ticket_name === coin.uuid),
     ),
-    favorites: data.data.coins.filter(
-      (coin) => favorites.find((fav) => fav.ticket_name === coin.uuid),
+    favorites: data.data.coins.filter((coin) =>
+      favorites.find((fav) => fav.ticket_name === coin.uuid),
     ),
   };
-  console.log('_+++++++_', result.favorites);
+
   res.json(result);
 });
 

@@ -23,8 +23,9 @@ import { useNavigate } from 'react-router-dom';
 import type { StockType } from '../../types/stockType';
 import UniversalModal from './UniversalModal';
 import { saveApiKeyThunk } from '../../redux/thunkActions/apiKeyThunkActions';
-import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
+import { useAppDispatch } from '../../hooks/useReduxHook';
 import type { UserType } from '../../types/authType';
+import type { ApiKeyType } from '../../types/apiKeyType';
 
 type StockItemProps = {
   stock: StockType;
