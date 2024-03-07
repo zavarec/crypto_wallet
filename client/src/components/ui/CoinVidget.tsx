@@ -6,11 +6,15 @@ import type { CoinType } from '../../types/coinsListApiTypes';
 
 export default function CoinVidget(): JSX.Element {
   const { id } = useParams();
-  const data = useAppSelector((state) => state.coins.data?.coins);
-  const oneCoin = data?.find((coin) => coin.uuid === id);
+  const data = useAppSelector((state) => state.coins.data?.coins)!;
+  const favorites = useAppSelector((state) => state.coins.data?.favorites)!;
+  const arr = [...data, ...favorites]
+  const oneCoin = arr.find((coin) => coin.uuid === id);
   // console.log(oneCoin);
 
   const widgetRef = useRef<HTMLDivElement>(null);
+
+  console.log('----------', `${oneCoin?.symbol}`);
 
   useEffect(() => {
     if (widgetRef.current) {

@@ -2,14 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/useReduxHook';
 
-type TradingViewWidgetProps = {
-  symbol: string;
-};
-
 export default function CoinInfoVidget(): JSX.Element {
   const { id } = useParams();
-  const data = useAppSelector((state) => state.coins.data?.coins);
-  const oneCoin = data?.find((coin) => coin.uuid === id);
+  const data = useAppSelector((state) => state.coins.data?.coins)!;
+  const favorites = useAppSelector((state) => state.coins.data?.favorites)!;
+  const arr = [...data, ...favorites];
+  const oneCoin = arr.find((coin) => coin.uuid === id);
 
   const widgetContainerRef = useRef<HTMLDivElement>(null);
 

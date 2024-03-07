@@ -15,7 +15,7 @@ export default function FavoritesPage(): JSX.Element {
     void dispatch(getCoinsThunkAction());
   }, [dispatch]);
 
-  console.log(data?.favorites);
+  // console.log(data?.favorites);
   const filteredCoins = data?.favorites
     .filter(
       (coin) =>
@@ -27,6 +27,7 @@ export default function FavoritesPage(): JSX.Element {
   const loadMoreCoins = (): void => {
     setVisibleCount((prevCount) => prevCount + 15); // Увеличиваем количество отображаемых монет на 15
   };
+
   return (
     <Box position="sticky" top={0} zIndex={1}>
       <Box
@@ -49,13 +50,13 @@ export default function FavoritesPage(): JSX.Element {
         <Table variant="simple" size="sm" colorScheme="whiteAlpha">
           <Thead>
             <Tr bg="gray.700">
-              <Th>Монета</Th>
-              <Th>Имя</Th>
-              <Th>Символ</Th>
-              <Th isNumeric>Цена</Th>
-              <Th isNumeric>Рыночная капитализация</Th>
-              <Th isNumeric>Объем (24ч)</Th>
-              <Th>Избранные</Th>
+              <Th>Coin</Th>
+              <Th>Name</Th>
+              <Th>Symbol</Th>
+              <Th isNumeric>Price</Th>
+              <Th isNumeric>Market capitalization</Th>
+              <Th isNumeric>Volume (24h)</Th>
+              <Th>Favorites</Th>
             </Tr>
           </Thead>
           <Tbody color="yellow">
@@ -64,7 +65,7 @@ export default function FavoritesPage(): JSX.Element {
         </Table>
       </Box>
       <Box display="flex" justifyContent="center" mt={4} mb="4%">
-        <Button onClick={loadMoreCoins}>Загрузить еще</Button>
+        <Button onClick={loadMoreCoins}>Load more</Button>
       </Box>
     </Box>
   );
