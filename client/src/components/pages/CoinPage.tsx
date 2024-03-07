@@ -10,16 +10,11 @@ export default function CoinPage(): JSX.Element {
   useEffect(() => {
     void dispatch(getCoinsThunkAction());
   }, [dispatch]);
-  const coins = useAppSelector((state) => state.coins.data);
-  if (!coins) return <>Error</>;
+  // const coins = useAppSelector((state) => state.coins.data);
+  // if (!coins) return <>Error</>;
 
-  const data = coins.coins;
+  // const data = coins.coins;
   // console.log('->>', data);
 
-  return (
-    <Box>
-      <Text>{}</Text>
-      {data?.map((coin) => <CoinVidget key={coin.uuid} coin={coin} />)}
-    </Box>
-  );
+  return <CoinVidget />;
 }
