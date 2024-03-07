@@ -17,8 +17,10 @@ marketRouter.post('/:id', verifyRefreshToken, async (req, res) => {
 marketRouter.delete('/:id', verifyRefreshToken, async (req, res) => {
   const { id } = req.params;
   const userId = res.locals.user.id;
+  const resor = await Favorite.findOne({ where: { ticket_name: id, user_id: userId } });
   await Favorite.destroy({ where: { ticket_name: id, user_id: userId } });
-  res.json({ message: 'Deleted' });
+  console.log(resor);
+  res.json(resor);
 });
 
 // marketRouter.delete('/:id', verifyRefreshToken, async (req, res) => {

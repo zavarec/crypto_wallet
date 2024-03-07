@@ -1,11 +1,13 @@
 const express = require('express');
+const crypto = require('crypto');
+const axios = require('axios');
 const { ApiKey } = require('../db/models');
 const { http_request } = require('../utils/exchangeConnection');
 
 const bybitRouter = express.Router();
 
 // Маршрут для получения баланса
-bybitRouter.get('/', async (req, res) => {
+bybitRouter.get('/balance', async (req, res) => {
   try {
     // Получаем данные пользователя из middleware или используем ID пользователя 1 для разработки
     const userId = res.locals.user ? res.locals.user.id : 1;
@@ -20,7 +22,14 @@ bybitRouter.get('/', async (req, res) => {
 
     const endpoint = '/v5/account/wallet-balance';
     const params = { accountType: 'UNIFIED' };
-    const response = await http_request(endpoint, 'GET', params, 'Wallet Balance', api_key, api_secret);
+    const response = await http_request(
+      endpoint,
+      'GET',
+      params,
+      'Wallet Balance',
+      api_key,
+      api_secret,
+    );
     res.json(response.data);
   } catch (error) {
     console.error(error.message);

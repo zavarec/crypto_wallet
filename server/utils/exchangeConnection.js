@@ -5,21 +5,25 @@ require('dotenv').config();
 const url = process.env.BYBIT_EXCHANGE_BASE_URL;
 const recvWindow = 5000;
 
-function getSignature(parameters, secret) {
-  const timestamp = Date.now().toString();
-  const queryString = Object.entries(parameters).map(([key, value]) => `${key}=${value}`).join('&');
-  return crypto.createHmac('sha256', secret).update(`${timestamp}${parameters.api_key}${recvWindow}${queryString}`).digest('hex');
+function getSignature(parameters, apiKey, secret) {
+  const queryString = Object.entries(parameters)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+
+  return crypto
+    .createHmac('sha256', secret)
+    .update(`${parameters.timestamp}${apiKey}${recvWindow}${queryString}`)
+    .digest('hex');
 }
 
 async function http_request(endpoint, method, params, Info, apiKey, secret) {
   const timestamp = Date.now().toString();
   const data = {
     ...params,
-    api_key: apiKey,
     timestamp,
-    recv_window: recvWindow,
   };
-  const sign = getSignature(data, secret);
+
+  const sign = getSignature(data, apiKey, secret);
   let fullendpoint = url + endpoint;
 
   if (method === 'GET') {

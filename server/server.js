@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.use('/api/auth', userRouter);
-app.use('/portfolio', bybitRouter);
+app.use('/api', bybitRouter);
 app.use('/api/stocks', stockRouter);
 
 app.use('/api/tokens', tokensRouter);

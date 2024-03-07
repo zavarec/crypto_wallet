@@ -51,4 +51,60 @@ apiKeysRouter.route('/all').get(async (req, res) => {
   res.json(apis);
 });
 
+apiKeysRouter.route('/:id').put(async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const { name, api_key, api_secret } = req.body;
+  if (Number.isNaN(id)) {
+    res.status(401).json({ message: 'wrong api id' });
+  }
+  if (!name || !api_key || !api_secret) {
+    res.status(401).json({ message: 'wrong api data' });
+    return;
+  }
+
+  try {
+    const api = await ApiKey.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!api) {
+      res.status(404).json({ message: 'api not found' });
+      return;
+    }
+
+    api.name = name;
+    api.api_key = api_key;
+    api.api_secret = api_secret;
+
+    await api.save();
+
+    res.json(api);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
+apiKeysRouter.route('/:id').delete(async (req, res) => {
+  const { id } = req.params;
+  if (Number.isNaN(id)) {
+    res.status(401).json({ message: 'wrong api id' });
+  }
+  try {
+    await ApiKey.destroy({
+      where: {
+        id,
+      },
+    });
+
+    res.json(id);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
 module.exports = apiKeysRouter;
