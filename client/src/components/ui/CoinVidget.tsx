@@ -41,17 +41,44 @@ export default function CoinVidget(): JSX.Element {
   }, [oneCoin?.symbol]); //
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: '#1a1a1a',
+        padding: '20px',
+        borderRadius: '10px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        height: '430px',
+      }}
+    >
       {oneCoin && (
-        <div style={{display: 'flex'}}>
-          <img src={oneCoin.iconUrl} alt={oneCoin.name} style={{ width: '100px' }}/>
-          <h2 style={{color: 'white'}}>{oneCoin.name}</h2>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Image src={oneCoin.iconUrl} alt={oneCoin.name} w="100px" h="auto" />
+          <Text ml="2" fontSize="xl" fontWeight="bold" color="white">
+            {oneCoin.name}
+          </Text>
         </div>
       )}
-      <div className="tradingview-widget-container" ref={widgetRef}>
-        <div className="tradingview-widget-container__widget" />
-        <div className="tradingview-widget-copyright">
-          <a href="https://www.tradingview.com/" rel="noopener nofollow noreferrer" target="_blank">
+      <div
+        className="tradingview-widget-container"
+        ref={widgetRef}
+        style={{
+          marginTop: '20px',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <div
+          className="tradingview-widget-container__widget"
+          style={{ height: '100%', borderRadius: '10px' }}
+        />
+        <div className="tradingview-widget-copyright" style={{ marginTop: '10px' }}>
+          <a
+            href="https://www.tradingview.com/"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            style={{ color: '#1a1a1a', textDecoration: 'none' }}
+          >
             <span className="blue-text">Track all markets on TradingView</span>
           </a>
         </div>

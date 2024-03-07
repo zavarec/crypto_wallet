@@ -8,12 +8,10 @@ import '@fontsource/open-sans/700.css';
 import theme from './utils/theme';
 import { store } from './redux/store';
 
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <ChakraProvider theme={theme}>
       <App />
     </ChakraProvider>
-    ,
-  </Provider>,
+  </Provider>
 );
