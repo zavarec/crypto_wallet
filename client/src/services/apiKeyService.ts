@@ -24,13 +24,23 @@ class ApiKeyService {
     }
   }
 
-  public updateApi(api: ApiKeyType): Promise<ApiKeyType> {
-    return this.api.put<ApiKeyType>(`/apikeys/${api.id}`, api).then((res) => res.data);
+  public updateApi(id: number, api: ApiKeyType): Promise<ApiKeyType> {
+    return this.api.put<ApiKeyType>(`/apikeys/${id}`, api).then((res) => res.data);
   }
 
   public fetchApis(): Promise<ApiKeyType[]> {
     return this.api.get<ApiKeyType[]>('/apikeys/all').then((res) => res.data);
   }
+
+  public deleteApiKey(id: number): Promise<number> {
+    return this.api.delete<number>(`/apikeys/${id}`).then((res) => res.data);
+  }
+
+  public getFuckApi(): Promise<ApiKeyType> {
+    return this.api.get<ApiKeyType>(`/balance`).then((res) => res.data);
+  }
+
+
 }
 
 export default new ApiKeyService(axiosInstance);

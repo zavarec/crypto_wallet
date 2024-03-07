@@ -15,7 +15,7 @@ export const getCoinsThunkAction = createAsyncThunk<DataStateType>(
   async () => getCoins(),
 );
 
-export const addToFavoritesThunkAction = createAsyncThunk<Promise<FavoriteCoin['ticket_name']>, string>(
+export const addToFavoritesThunkAction = createAsyncThunk<Promise<FavoriteCoin['ticket_name']>,string>(
   'coins/addToFavorites',
   async (coinId) => addToFavorites(coinId),
 );

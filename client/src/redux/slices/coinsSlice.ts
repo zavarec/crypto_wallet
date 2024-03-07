@@ -32,21 +32,34 @@ const coinsSlice = createSlice({
       })
       .addCase(addToFavoritesThunkAction.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        if (!state.data) return;
+        if (!state.data?.coins) return;
 
         const targetCoin = state.data.coins.find(
           (coin) => coin.uuid === action.payload.ticket_name,
         );
         if (targetCoin) {
           state.data.favorites.push(targetCoin);
+          state.data.coins = state.data.coins.filter(
+            (coin) => coin.uuid !== action.payload.ticket_name,
+          );
         }
         // state.data = state.data.favorites.filter((coin) => coin.uuid !== action.payload);
+      })
+      .addCase(deleteFavoriteCoinThunkAction.fulfilled, (state, action) => {
+        if (!state.data.favorites) return;
+        state.status = 'succeeded';
+        const targetCoin = state.data?.favorites.find(
+          (coin) => coin.uuid === action.payload.ticket_name,
+        );
+        if (targetCoin) {
+          state.data.coins.push(targetCoin);
+          state.data?.coins.sort((a, b) => a.rank - b.rank);
+          state.data.favorites = state.data.favorites.filter(
+            (coin) => coin.uuid !== action.payload.ticket_name,
+          );
+        }
+        state.data.favorites = state.data.favorites.filter((coin) => coin.uuid !== action.payload);
       });
-    // .addCase(deleteFavoriteCoinThunkAction.fulfilled, (state, action) => {
-    //   if (!state.favorites) return;
-    //   state.status = 'succeeded';
-    //   state.favorites = state.favorites.filter((coin) => coin.uuid !== action.payload);
-    // });
   },
 });
 

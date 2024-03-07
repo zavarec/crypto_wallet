@@ -23,6 +23,7 @@ export type FavoriteCoin = {
   ticket_name: string;
 }
 
+
 export type DataStateType = {
   coins: CoinType[];
   favorites: CoinType[];

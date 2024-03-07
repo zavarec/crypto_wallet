@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import { Button, Box, Card } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
-import { fetchAllApisThunk } from '../../redux/thunkActions/apiKeyThunkActions';
+import { fetchAllApisThunk, setPortfolioApiThunk } from '../../redux/thunkActions/apiKeyThunkActions';
 import PortfolioItom from '../ui/PortfolioItom';
 import type { ApiKeyType } from '../../types/apiKeyType';
 
 export default function PortfolioPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const apis = useAppSelector((state) => state.stock.apis) as ApiKeyType[];
+  const apis = useAppSelector((state) => state.stock.apis) as ApiKeyType[]
+  const stock = useAppSelector((state) => state.stock.stocks);
+  const user = useAppSelector((state) => state.auth.user);
   useEffect(() => {
-    void dispatch(fetchAllApisThunk());
+    void dispatch(setPortfolioApiThunk());
   }, [dispatch]);
 
   return (
@@ -49,7 +51,7 @@ export default function PortfolioPage(): JSX.Element {
           <Button>Create portfolio</Button>
         </Box>
       </Box>
-        <Box>{apis?.map((api) => <PortfolioItom key={api.id} api={api} />)}</Box>
+      <Box>{apis?.map((api) => <PortfolioItom stock = {stock} user={user} key={api.id} api={api} />)}</Box>
 
       <Box width="75%">
         <Box display="flex" />

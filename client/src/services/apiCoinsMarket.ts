@@ -27,3 +27,5 @@ export const deleteFavoriteCoin = async (coinId: CoinType['uuid']): Promise<Coin
   const response = await axiosInstance.delete<CoinType['uuid']>(`/marketdata/${coinId}`);
   return response.data;
 };
+
+

@@ -16,10 +16,11 @@ type OneCoinCardPropsType = {
 
 const MotionIconButton = motion(IconButton);
 
+
 export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.coins.data.favorites);
-  const isFavorite = data.some((favorite) => favorite.uuid === coin.uuid);
+  const data = useAppSelector((state) => state.coins.data?.favorites);
+  const isFavorite = data?.some((favorite) => favorite.uuid === coin.uuid);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const animationVariants = {
@@ -37,7 +38,7 @@ export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
 
     setIsAnimating(true);
   };
-  const starColor = isFavorite ? 'yellow' : 'gray.300';
+  const starColor = isFavorite ? 'gold' : 'gray.300';
   const navigate = useNavigate();
   const handleNavigate = () => {
     // Здесь указывается маршрут для перенаправления, например:
@@ -45,12 +46,14 @@ export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
   };
 
   return (
+
     <Tr
       key={coin.uuid}
       bg="gray.900"
       _hover={{ bg: 'gray.700' }}
       onClick={() => navigate(coin.uuid)}
     >
+
       <Td>
         <Image src={coin.iconUrl} alt={coin.name} boxSize="30px" objectFit="cover" />
       </Td>
@@ -69,6 +72,7 @@ export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           onAnimationComplete={handleAnimationComplete}
         />
+       
       </Td>
     </Tr>
   );

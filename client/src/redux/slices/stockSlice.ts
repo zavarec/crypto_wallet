@@ -4,9 +4,11 @@ import type { StocksUninitialStateType } from '../../types/stockType';
 import { fetchStocksThunk } from '../thunkActions/stockThunkActions';
 import type { ApiKeyType } from '../../types/apiKeyType';
 import {
+  deleteApiKeyThunk,
   fetchAllApisThunk,
   fetchApisThunk,
   saveApiKeyThunk,
+  setPortfolioApiThunk,
   updateApiThunk,
 } from '../thunkActions/apiKeyThunkActions';
 
@@ -17,6 +19,7 @@ const initialState: StocksUninitialStateType = {
   apis: null,
   apisLoading: false,
   editApi: null,
+  allApis: null,
 };
 
 const stockSlice = createSlice({
@@ -70,6 +73,14 @@ const stockSlice = createSlice({
       state.editApi = null;
     });
     builder.addCase(fetchAllApisThunk.fulfilled, (state, action) => {
+      state.apis = action.payload;
+    });
+
+    builder.addCase(deleteApiKeyThunk.fulfilled, (state, action) => {
+      if (!state.apis) return;
+      state.apis = state.apis?.filter((el) => el.id !== Number(action.payload));
+    });
+    builder.addCase(setPortfolioApiThunk.fulfilled, (state, action) => {
       state.apis = action.payload;
     });
   },
