@@ -10,7 +10,7 @@ export default function CoinVidget(): JSX.Element {
   const oneCoin = data?.find((coin) => coin.uuid === id);
   // console.log(oneCoin);
 
-  const widgetRef = useRef(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (widgetRef.current) {
@@ -24,7 +24,7 @@ export default function CoinVidget(): JSX.Element {
       script.type = 'text/javascript';
       script.innerHTML = JSON.stringify({
         autosize: true,
-        symbol: `CRYPTOCAP:${oneCoin?.symbol}`,
+        symbol: `CRYPTO:${oneCoin?.symbol}USD`,
         interval: 'D',
         timezone: 'Etc/UTC',
         theme: 'dark',
@@ -41,23 +41,15 @@ export default function CoinVidget(): JSX.Element {
   }, [oneCoin?.symbol]); //
 
   return (
-    <div
-      style={{
-        backgroundColor: '#1a1a1a',
-        padding: '20px',
-        borderRadius: '10px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        height: '430px',
-      }}
-    >
-      {oneCoin && (
+    <div style={{ height: '380px', width: '800px', marginTop: '0px' }}>
+      {/* {oneCoin && (
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Image src={oneCoin.iconUrl} alt={oneCoin.name} w="100px" h="auto" />
           <Text ml="2" fontSize="xl" fontWeight="bold" color="white">
             {oneCoin.name}
           </Text>
         </div>
-      )}
+      )} */}
       <div
         className="tradingview-widget-container"
         ref={widgetRef}
