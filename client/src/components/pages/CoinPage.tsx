@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react';
 import CoinVidget from '../ui/CoinVidget';
 import { useAppDispatch } from '../../hooks/useReduxHook';
 import { getCoinsThunkAction } from '../../redux/thunkActions/marketThunkActions';
+import CoinInfoVidget from '../ui/CoinInfoVidget';
 
 export default function CoinPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -11,5 +12,10 @@ export default function CoinPage(): JSX.Element {
     void dispatch(getCoinsThunkAction());
   }, [dispatch]);
 
-  return <CoinVidget />;
+  return (
+    <>
+      <CoinInfoVidget />
+      <CoinVidget />
+    </>
+  );
 }
