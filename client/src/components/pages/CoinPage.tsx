@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Box, Text } from '@chakra-ui/react';
 import CoinVidget from '../ui/CoinVidget';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { getCoinsThunkAction } from '../../redux/thunkActions/marketThunkActions';
@@ -13,7 +14,12 @@ export default function CoinPage(): JSX.Element {
   if (!coins) return <>Error</>;
 
   const data = coins.coins;
-  console.log('->>', data);
+  // console.log('->>', data);
 
-  return <div>{data?.map((coin) => <CoinVidget key={coin.uuid} coin={coin} />)}</div>;
+  return (
+    <Box>
+      <Text>{}</Text>
+      {data?.map((coin) => <CoinVidget key={coin.uuid} coin={coin} />)}
+    </Box>
+  );
 }
