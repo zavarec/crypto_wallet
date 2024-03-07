@@ -1,9 +1,4 @@
-
 import { Modal } from '@chakra-ui/react';
-
-import {
-  Modal,
-} from '@chakra-ui/react';
 
 import React from 'react';
 

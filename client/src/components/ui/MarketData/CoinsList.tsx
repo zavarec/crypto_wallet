@@ -4,7 +4,7 @@ import { Box, Button, Input, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/reac
 import { getCoinsThunkAction } from '../../../redux/thunkActions/marketThunkActions';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxHook';
 import CoinCard from './CoinCard';
-import type { CoinType } from '../../../types/coinsListApiTypes';
+import type { CoinType } from '../../../types/coinsTypes';
 
 export default function CoinsList(): JSX.Element {
   const dispatch = useAppDispatch();

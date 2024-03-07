@@ -1,4 +1,4 @@
-import type { CoinType, DataStateType, FavoriteCoin } from '../types/coinsListApiTypes';
+import type { CoinType, DataStateType, FavoriteCoin } from '../types/coinsTypes';
 import axiosInstance from './apiInstance';
 
 const url = import.meta.env.VITE_URL_API_COINRANKING as string;
@@ -27,5 +27,3 @@ export const deleteFavoriteCoin = async (coinId: CoinType['uuid']): Promise<Coin
   const response = await axiosInstance.delete<CoinType['uuid']>(`/marketdata/${coinId}`);
   return response.data;
 };
-
-

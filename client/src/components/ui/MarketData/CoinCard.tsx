@@ -3,7 +3,7 @@ import { IconButton, Image, Td, Tr } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import type { CoinType } from '../../../types/coinsListApiTypes';
+import type { CoinType } from '../../../types/coinsTypes';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxHook';
 import {
   addToFavoritesThunkAction,
@@ -15,7 +15,6 @@ type OneCoinCardPropsType = {
 };
 
 const MotionIconButton = motion(IconButton);
-
 
 export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
   const dispatch = useAppDispatch();
@@ -46,14 +45,12 @@ export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
   };
 
   return (
-
     <Tr
       key={coin.uuid}
       bg="gray.900"
       _hover={{ bg: 'gray.700' }}
       onClick={() => navigate(coin.uuid)}
     >
-
       <Td>
         <Image src={coin.iconUrl} alt={coin.name} boxSize="30px" objectFit="cover" />
       </Td>
@@ -72,7 +69,6 @@ export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           onAnimationComplete={handleAnimationComplete}
         />
-       
       </Td>
     </Tr>
   );

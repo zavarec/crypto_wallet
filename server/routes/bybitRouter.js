@@ -30,6 +30,7 @@ bybitRouter.get('/balance', async (req, res) => {
       api_key,
       api_secret,
     );
+    console.log(response.data);
     res.json(response.data);
   } catch (error) {
     console.error(error.message);

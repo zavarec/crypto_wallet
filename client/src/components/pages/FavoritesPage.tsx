@@ -3,7 +3,7 @@ import { Box, Button, Input, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/reac
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import CoinCard from '../ui/MarketData/CoinCard';
 import { getCoinsThunkAction } from '../../redux/thunkActions/marketThunkActions';
-import type { CoinType } from '../../types/coinsListApiTypes';
+import type { CoinType } from '../../types/coinsTypes';
 
 export default function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();

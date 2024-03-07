@@ -13,14 +13,10 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import type { ApiKeyType } from '../../types/apiKeyType';
-import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
-import {
-  deleteApiKeyThunk,
-  setPortfolioApiThunk,
-  updateApiThunk,
-} from '../../redux/thunkActions/apiKeyThunkActions';
+import { useAppDispatch } from '../../hooks/useReduxHook';
+import { deleteApiKeyThunk, updateApiThunk } from '../../redux/thunkActions/apiKeyThunkActions';
 import UniversalModal from './UniversalModal';
 import type { UserType } from '../../types/authType';
 
@@ -37,17 +33,10 @@ export default function PortfolioItom({ api, user, stock }: PortfolioItomsProps)
     onOpen();
   };
 
-  const data = useAppSelector((state) => state.stocks.apis);
-
-  console.log(data);
-  useEffect(() => {
-    void dispatch(setPortfolioApiThunk());
-  }, [dispatch]);
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, id: number): void => {
     e.preventDefault();
     console.log(id);
-    const data = Object.fromEntries(new FormData(e.currentTarget)) as ApiKeyType;
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as ApiKeyType
     void dispatch(updateApiThunk({ api: data, id }));
 
     onClose();
