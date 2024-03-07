@@ -1,6 +1,11 @@
+
 import { Box, Button, SimpleGrid, useDisclosure } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+
+import { Box, SimpleGrid } from '@chakra-ui/react';
+import React from 'react';
+
 import StockWrapper from '../ui/StocksWrapper';
 
 const MotionSimpleGrid = motion(SimpleGrid);

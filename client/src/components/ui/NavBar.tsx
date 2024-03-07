@@ -27,6 +27,7 @@ export default function NavBar(): JSX.Element {
       rounded="lg"
       px={4}
       fontSize={20}
+      marginBottom="0px"
     >
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HStack spacing={6}>

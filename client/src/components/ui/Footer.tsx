@@ -79,9 +79,10 @@ export default function SmallWithLogoLeft(): JSX.Element {
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}
+        marginTop="60px"
       >
         <Logo />
-        <Text style={textStyle}>© 2022 Crypto wallet</Text>
+        <Text style={textStyle}>© 2024 Crypto wallet</Text>
         <Stack direction="row" spacing={6}>
           <SocialButton label="Twitter" href="#">
             <FaTwitter style={{ color: 'white' }} />
