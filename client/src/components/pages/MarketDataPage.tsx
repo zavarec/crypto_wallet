@@ -8,7 +8,7 @@ export default function MarketDataPage(): JSX.Element {
     <Tabs isManual variant="enclosed" display="block" pt="3%">
       <TabList display="flex" justifyContent="center" alignItems="flex-start">
         <Tab color="yellow">CryptoCurrency</Tab>
-        <Tab color="yellow">Избранные</Tab>
+        <Tab color="yellow">Favorites</Tab>
       </TabList>
       <TabPanels>
         <TabPanel>
