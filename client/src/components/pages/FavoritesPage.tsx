@@ -43,7 +43,7 @@ export default function FavoritesPage(): JSX.Element {
         <Input
           color="yellow"
           mb={4}
-          placeholder="Поиск по монетам"
+          placeholder="Search by coins"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
