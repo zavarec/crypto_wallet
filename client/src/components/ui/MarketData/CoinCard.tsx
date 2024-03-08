@@ -49,12 +49,12 @@ export default function CoinCard({ coin }: OneCoinCardPropsType): JSX.Element {
       key={coin.uuid}
       bg="gray.900"
       _hover={{ bg: 'gray.700' }}
-      onClick={() => navigate(coin.uuid)}
+      
     >
       <Td>
-        <Image src={coin.iconUrl} alt={coin.name} boxSize="30px" objectFit="cover" />
+        <Image src={coin.iconUrl} alt={coin.name} boxSize="30px" objectFit="cover" onClick={() => navigate(coin.uuid)} />
       </Td>
-      <Td>{coin.name}</Td>
+      <Td onClick={() => navigate(coin.uuid)}>{coin.name}</Td>
       <Td>{coin.symbol}</Td>
       <Td isNumeric>${coin.price}</Td>
       <Td isNumeric>${coin.marketCap}</Td>
