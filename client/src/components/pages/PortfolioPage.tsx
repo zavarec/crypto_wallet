@@ -7,7 +7,7 @@ import PortfolioList from '../ui/PortfolioList';
 
 export default function PortfolioPage(): JSX.Element {
   // const dispatch = useAppDispatch();
-  const apis = useAppSelector((state) => state.stock.apis) as ApiKeyType[]
+  const apis = useAppSelector((state) => state.stock.apis) as ApiKeyType[];
   const stock = useAppSelector((state) => state.stock.stocks);
   const user = useAppSelector((state) => state.auth.user);
   // useEffect(() => {
@@ -15,7 +15,7 @@ export default function PortfolioPage(): JSX.Element {
   // }, [dispatch]);
 
   return (
-    <Box display="flex" height="100%">
+    <Box display="flex" height="100%" overflow="scroll">
       <Box width="25%" display="flex" justifyContent="space-around" height="35px" flexWrap="wrap">
         <Box pt="5px" color="white">
           My Portfolio
@@ -51,11 +51,12 @@ export default function PortfolioPage(): JSX.Element {
           <Button>Create portfolio</Button>
         </Box>
       </Box>
-      <Box>{apis?.map((api) => <PortfolioItom stock = {stock} user={user} key={api.id} api={api} />)}</Box>
-     
+      <Box>
+        {apis?.map((api) => <PortfolioItom stock={stock} user={user} key={api.id} api={api} />)}
+      </Box>
 
       <Box width="100%">
-      <PortfolioList/>
+        <PortfolioList />
         <Box display="flex" />
       </Box>
     </Box>
