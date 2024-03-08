@@ -28,21 +28,23 @@ export default function App(): JSX.Element {
       // loader: () => dispatch(checkTokenThunk()).catch(),
       children: [
         { path: '/', element: <MainPage /> },
-        { path: 'portfolio', element: <PortfolioPage /> },
-        {
-          path: 'marketdata',
-          element: <MarketDataPage />,
-          // loader: () => dispatch(getCoinsThunkAction()),
-        },
-        { path: 'favorites', element: <FavoritesPage /> },
-        {
-          path: 'marketdata/:id',
-          element: <CoinPage />,
-          // loader: () => dispatch(getCoinsThunkAction()),
-        },
         {
           element: <PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />,
-          children: [{ path: 'logged', element: <LoggedPage /> }],
+          children: [
+            { path: 'logged', element: <LoggedPage /> },
+            {
+              path: 'marketdata',
+              element: <MarketDataPage />,
+              // loader: () => dispatch(getCoinsThunkAction()),
+            },
+            {
+              path: 'marketdata/:id',
+              element: <CoinPage />,
+              // loader: () => dispatch(getCoinsThunkAction()),
+            },
+            { path: 'portfolio', element: <PortfolioPage /> },
+            { path: 'favorites', element: <FavoritesPage /> },
+          ],
         },
       ],
       errorElement: <ErrorPage />,
