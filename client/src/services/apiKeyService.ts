@@ -1,6 +1,7 @@
 import type { AxiosInstance } from 'axios';
 import axiosInstance from './apiInstance';
 import type { ApiKeyType } from '../types/apiKeyType';
+import type { ApiResponseType } from '../types/coinsTypes';
 
 class ApiKeyService {
   constructor(private readonly api: AxiosInstance) {}
@@ -36,11 +37,9 @@ class ApiKeyService {
     return this.api.delete<number>(`/apikeys/${id}`).then((res) => res.data);
   }
 
-  public getFuckApi(): Promise<ApiKeyType> {
-    return this.api.get<ApiKeyType>(`/balance`).then((res) => res.data);
+  public getFuckApi(): Promise<ApiResponseType> {
+    return this.api.get<ApiResponseType>(`/balance`).then((res) => res.data);
   }
-
-
 }
 
 export default new ApiKeyService(axiosInstance);

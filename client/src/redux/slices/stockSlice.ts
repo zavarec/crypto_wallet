@@ -19,7 +19,6 @@ const initialState: StocksUninitialStateType = {
   apis: null,
   apisLoading: false,
   editApi: null,
-  allApis: null,
 };
 
 const stockSlice = createSlice({
@@ -79,9 +78,6 @@ const stockSlice = createSlice({
     builder.addCase(deleteApiKeyThunk.fulfilled, (state, action) => {
       if (!state.apis) return;
       state.apis = state.apis?.filter((el) => el.id !== Number(action.payload));
-    });
-    builder.addCase(setPortfolioApiThunk.fulfilled, (state, action) => {
-      state.apis = action.payload;
     });
   },
 });

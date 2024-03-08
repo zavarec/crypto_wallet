@@ -13,5 +13,5 @@ export type StocksUninitialStateType = {
   apis: ApiKeyType[] | null;
   apisLoading: boolean;
   editApi: ApiKeyType | null;
-  allApis: ApiKeyType[] | null;
+
 };

@@ -4,11 +4,13 @@ import {
   deleteFavoriteCoinThunkAction,
   getCoinsThunkAction,
 } from '../thunkActions/marketThunkActions';
-import type { CoinsStateType } from '../../types/coinsListApiTypes';
+import type { CoinsStateType } from '../../types/coinsTypes';
+import { setPortfolioApiThunk } from '../thunkActions/apiKeyThunkActions';
 
 const initialState: CoinsStateType = {
   data: null,
   status: 'loading',
+  balance: null,
 };
 
 // data: all coins, favorites: favorite coins
@@ -46,7 +48,7 @@ const coinsSlice = createSlice({
         // state.data = state.data.favorites.filter((coin) => coin.uuid !== action.payload);
       })
       .addCase(deleteFavoriteCoinThunkAction.fulfilled, (state, action) => {
-        if (!state.data.favorites) return;
+        if (!state.data?.favorites) return;
         state.status = 'succeeded';
         const targetCoin = state.data?.favorites.find(
           (coin) => coin.uuid === action.payload.ticket_name,
@@ -59,6 +61,13 @@ const coinsSlice = createSlice({
           );
         }
         state.data.favorites = state.data.favorites.filter((coin) => coin.uuid !== action.payload);
+      })
+      .addCase(setPortfolioApiThunk.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(setPortfolioApiThunk.fulfilled, (state, action) => {
+        state.balance = action.payload;
+        state.status = 'succeeded';
       });
   },
 });

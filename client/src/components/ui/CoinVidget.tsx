@@ -2,13 +2,13 @@ import React, { useEffect, useRef, memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Image, Text } from '@chakra-ui/react';
 import { useAppSelector } from '../../hooks/useReduxHook';
-import type { CoinType } from '../../types/coinsListApiTypes';
+import type { CoinType } from '../../types/coinsTypes';
 
 export default function CoinVidget(): JSX.Element {
   const { id } = useParams();
   const data = useAppSelector((state) => state.coins.data?.coins)!;
   const favorites = useAppSelector((state) => state.coins.data?.favorites)!;
-  const arr = [...data, ...favorites]
+  const arr = [...data, ...favorites];
   const oneCoin = arr.find((coin) => coin.uuid === id);
   // console.log(oneCoin);
 
