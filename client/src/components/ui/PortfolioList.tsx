@@ -90,7 +90,7 @@ export default function PortfolioList(): JSX.Element {
               {visibleBalance?.map((asset) => (
                 <Tr key={asset.coin}>
                   <Td>{asset.coin}</Td>
-                  <Td>{asset.usdValue}</Td>
+                  <Td>${asset.usdValue}</Td>
                   <Td>{asset.walletBalance}</Td>
                   <Td color={asset.cumRealisedPnl >= 0 ? 'green' : 'red'}>
                     {asset.cumRealisedPnl}{' '}

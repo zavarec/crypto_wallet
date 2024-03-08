@@ -40,13 +40,23 @@ export default function NavBar(): JSX.Element {
             Home
           </NavLink>
           {user.status === 'logged' && (
-            <NavLink style={textStyle} to="/portfolio" className={({ isActive }) => (isActive ? 'active' : '')}>
-              Portfolio
-            </NavLink>
+            <>
+              <NavLink
+                style={textStyle}
+                to="/portfolio"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                Portfolio
+              </NavLink>
+              <NavLink
+                style={textStyle}
+                to="/marketdata"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                MarketData
+              </NavLink>
+            </>
           )}
-          <NavLink style={textStyle} to="/marketdata" className={({ isActive }) => (isActive ? 'active' : '')}>
-            MarketData
-          </NavLink>
         </HStack>
         <HStack spacing={6}>
           {user.status === 'logged' && (
