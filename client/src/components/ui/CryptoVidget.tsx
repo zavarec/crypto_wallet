@@ -8,6 +8,11 @@ export default function CryptoVidget(): JSX.Element {
     script.src = 'https://cryptorank.io/widget/marquee.js';
     script.async = true;
 
+    script.onload = () => {
+      // Добавляем скрипт в элемент div с id 'cr-widget-marquee'
+      document.getElementById('cr-widget-marquee')?.appendChild(script);
+    };
+
     // Добавляем скрипт в элемент div с id 'cr-widget-marquee'
     document.getElementById('cr-widget-marquee')?.appendChild(script);
 
@@ -18,7 +23,7 @@ export default function CryptoVidget(): JSX.Element {
     };
   }, []);
   return (
-    <Box style={{paddingTop: '50px', paddingBottom: '20px'}}>
+    <Box style={{ paddingTop: '50px', paddingBottom: '20px' }}>
       <div
         id="cr-widget-marquee"
         data-coins="bitcoin,ethereum,tether,ripple,cardano"
